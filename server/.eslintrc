@@ -1,0 +1,26 @@
+{
+    "extends": [
+      "airbnb-base",
+      "plugin:import/typescript"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "rules": {
+      "no-console": 0,
+      "import/prefer-default-export": 0,
+      "max-classes-per-file": 0,
+      "import/extensions": 0,
+      "import/no-unresolved": 0,
+      "no-unused-vars": 0,
+      "@typescript-eslint/no-unused-vars": [
+        "error"
+      ],
+      "class-methods-use-this": 0,
+      "indent": [
+        "error",
+        4
+      ]
+    }
+  }

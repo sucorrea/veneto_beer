@@ -3,8 +3,8 @@ const db = require("../../../db");
 
 const router = Router();
 
-router.get("/usuarios", async (req: Request, res: Response) => {
-  const { rows } = await db.query("SELECT * FROM usuarios");
+router.get("/movimentacao_estoque", async (req: Request, res: Response) => {
+  const { rows } = await db.query("SELECT * FROM movimentacao_estoque");
   res.json(rows);
 });
 
