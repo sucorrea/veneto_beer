@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 
 import Usuarios from "./routes/usuarios";
 import Produtos from "./routes/produtos";
@@ -8,6 +9,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(cors());
 app.use(Usuarios);
 app.use(Produtos);
 app.use(Estoque);
