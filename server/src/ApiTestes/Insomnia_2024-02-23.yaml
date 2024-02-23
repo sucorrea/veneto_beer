@@ -1,0 +1,113 @@
+_type: export
+__export_format: 4
+__export_date: 2024-02-23T17:18:27.093Z
+__export_source: insomnia.desktop.app:v2023.5.8
+resources:
+  - _id: req_a8b1a8b4d5a34fe0b25cb59e6e9c8f9b
+    parentId: fld_21c438aa299d43ed8f6aabb149f983c8
+    modified: 1708708532430
+    created: 1708684055180
+    url: "{{ _.api_base_url }}/usuarios"
+    name: ConsultarUsuarios
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/2023.5.8
+    authentication: {}
+    metaSortKey: -1708708523613
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_21c438aa299d43ed8f6aabb149f983c8
+    parentId: wrk_9a61a0bd2c454f528b113afa0a8a88d1
+    modified: 1708708507679
+    created: 1708708507679
+    name: craft_beer_api
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1708708507679
+    _type: request_group
+  - _id: wrk_9a61a0bd2c454f528b113afa0a8a88d1
+    parentId: null
+    modified: 1708683950429
+    created: 1708683950429
+    name: beer_craft
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_2b9b0f878a5f4a72ad0dc14ed64f5a5a
+    parentId: fld_21c438aa299d43ed8f6aabb149f983c8
+    modified: 1708708530677
+    created: 1708684094458
+    url: "{{ _.api_base_url }}/movimentacao_estoque"
+    name: ConsultarMovimentacaoEstoque
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/2023.5.8
+    authentication: {}
+    metaSortKey: -1708708523513
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_597dfb21bb2f46c99d60344a356bc2f7
+    parentId: fld_21c438aa299d43ed8f6aabb149f983c8
+    modified: 1708708523446
+    created: 1708683998973
+    url: "{{ _.api_base_url }}/produtos"
+    name: ConsultarProdutos
+    description: ""
+    method: GET
+    body: {}
+    parameters: []
+    headers:
+      - name: User-Agent
+        value: insomnia/2023.5.8
+    authentication: {}
+    metaSortKey: -1708708523413
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_5fb59b4dfce31787ef98905c5b4c1c08ad0bf35b
+    parentId: wrk_9a61a0bd2c454f528b113afa0a8a88d1
+    modified: 1708707887524
+    created: 1708683950434
+    name: Base Environment
+    data:
+      api_base_url: http://localhost:3000
+    dataPropertyOrder:
+      "&":
+        - api_base_url
+    color: null
+    isPrivate: false
+    metaSortKey: 1708683950434
+    _type: environment
+  - _id: jar_5fb59b4dfce31787ef98905c5b4c1c08ad0bf35b
+    parentId: wrk_9a61a0bd2c454f528b113afa0a8a88d1
+    modified: 1708683950439
+    created: 1708683950439
+    name: Default Jar
+    cookies: []
+    _type: cookie_jar
