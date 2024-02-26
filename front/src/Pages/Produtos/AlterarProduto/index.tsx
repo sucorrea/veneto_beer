@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Close } from "@mui/icons-material";
+import { Edit } from "@mui/icons-material";
 import Modal from "@mui/material/Modal";
 
 import IconButtonTooltip from "../../../Components/IconButtonTooltip";
@@ -12,7 +12,7 @@ const AlterarProduto = () => {
       <IconButtonTooltip
         textoTooltip="Incluir"
         onClick={() => setOpenAlterarProduto(true)}
-        icon={<Close color="error" />}
+        icon={<Edit color="info" />}
       />
       <Modal
         open={openAlterarProduto}

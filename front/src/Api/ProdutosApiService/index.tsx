@@ -10,3 +10,7 @@ export async function consultarProdutos(): Promise<HttpResponse<OutProduto[]>> {
 
   return dados;
 }
+
+export async function excluirProduto(id_produto: number): Promise<void> {
+  await Api.delete(`produtos/${id_produto}`);
+}

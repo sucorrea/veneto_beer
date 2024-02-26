@@ -1,27 +1,35 @@
-import { useState } from "react";
-
-import { Edit } from "@mui/icons-material";
-import Modal from "@mui/material/Modal";
+import { Close } from "@mui/icons-material";
 
 import IconButtonTooltip from "../../../Components/IconButtonTooltip";
-const ExcluirrProduto = () => {
-  const [openExcluirrProduto, setOpenExcluirrProduto] = useState(false);
+import { useMutation } from "react-query";
+import { excluirProduto } from "../../../Api/ProdutosApiService";
+import { useProdutos } from "../useProdutos";
+type ExcluirProdutoProps = {
+  idProduto: number;
+};
+const ExcluirProduto = ({ idProduto }: ExcluirProdutoProps) => {
+  // const [openExcluirrProduto, setOpenExcluirrProduto] = useState(false);
+  const { atualizarProdutos } = useProdutos();
+
+  const { mutate } = useMutation(() => excluirProduto(idProduto), {
+    onSuccess: () => {
+      atualizarProdutos();
+    },
+  });
+
+  const handleClick = () => {
+    mutate();
+  };
 
   return (
     <>
       <IconButtonTooltip
-        textoTooltip="Incluir"
-        onClick={() => setOpenExcluirrProduto(true)}
-        icon={<Edit color="info" />}
+        textoTooltip="Excluir"
+        onClick={handleClick}
+        icon={<Close color="warning" />}
       />
-      <Modal
-        open={openExcluirrProduto}
-        onClose={() => setOpenExcluirrProduto(false)}
-      >
-        <>ExcluirR</>
-      </Modal>
     </>
   );
 };
 
-export default ExcluirrProduto;
+export default ExcluirProduto;
