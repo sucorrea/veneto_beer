@@ -32,7 +32,7 @@ router.patch("/usuarios/:id/senha", async (req: Request, res: Response) => {
 
       return res.send("Senha atualizada com sucesso.");
     } else {
-      res.status(404).send("Usuário não encontrado.");
+      return res.status(404).send("Usuário não encontrado.");
     }
   } catch (err) {
     console.error(err);
