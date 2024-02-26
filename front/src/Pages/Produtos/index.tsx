@@ -7,9 +7,18 @@ import { OutProduto } from "../../Api/ProdutosApiService/Models/OutProduto";
 import AlterarProduto from "./AlterarProduto";
 import ExcluirProduto from "./ExcluirProduto";
 import { useProdutos } from "./useProdutos";
+import { Card, CardContent, CardHeader, IconButton } from "@mui/material";
+import { AddCircle } from "@mui/icons-material";
 
 const columns: GridColDef[] = [
-  { field: "id_produto", headerName: "Código", width: 90 },
+  {
+    field: "id_produto",
+    headerName: "Código",
+    width: 90,
+    renderCell(params) {
+      return String(params.value).padStart(3, "0");
+    },
+  },
   {
     field: "nm_produto",
     headerName: "Nome do Produto",
@@ -72,15 +81,36 @@ const Produtos = () => {
   const handleGetRowId = useCallback((row: OutProduto) => row.id_produto, []);
 
   return (
-    <DataGrid
-      autoHeight
-      columns={columns}
-      getRowId={handleGetRowId}
-      hideFooter
-      rows={produtos}
-      checkboxSelection={false}
-      loading={isLoading}
-    />
+    <Card sx={{m: 2}}>
+      <CardHeader
+        title="Produtos"
+        action={
+          <IconButton aria-label="settings">
+            <AddCircle color="primary" />
+          </IconButton>
+        }
+      />
+      <CardContent>
+        <DataGrid
+          autoHeight
+          columns={columns}
+          getRowId={handleGetRowId}
+          hideFooter
+          rows={produtos}
+          checkboxSelection={false}
+          loading={isLoading}
+          pagination
+          pageSizeOptions={[5]}
+          initialState={{
+            pagination: {
+              paginationModel: {
+                pageSize: 5,
+              },
+            },
+          }}
+        />
+      </CardContent>
+    </Card>
   );
 };
 
