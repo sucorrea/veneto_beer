@@ -1,9 +1,14 @@
 import { Router, Request, Response } from "express";
-const db = require("../../../db");
+const db = require("../../../../db");
 
 const router = Router();
 
-router.post("/produtos", async (req: Request, res: Response) => {
+router.get("/produtos", async (req: Request, res: Response) => {
+  const { rows } = await db.query("SELECT * FROM produtos");
+  res.json(rows);
+});
+
+router.post("/produtos", async (req, res) => {
   const {
     dt_criacao,
     dt_validade,
@@ -12,12 +17,13 @@ router.post("/produtos", async (req: Request, res: Response) => {
     tipo_cerveja,
     teor_alcoolico,
     volume_ml,
+    pais_origem,
     descricao,
   } = req.body;
 
   try {
     const result = await db.query(
-      "INSERT INTO produtos (dt_criacao, dt_validade, nm_produto, vl_produto, tipo_cerveja, teor_alcoolico, volume_ml, descricao) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
+      "INSERT INTO cervejas_artesanais (dt_criacao, dt_validade, nm_produto, vl_produto, tipo_cerveja, teor_alcoolico, volume_ml, pais_origem, descricao) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *",
       [
         dt_criacao,
         dt_validade,
@@ -26,6 +32,7 @@ router.post("/produtos", async (req: Request, res: Response) => {
         tipo_cerveja,
         teor_alcoolico,
         volume_ml,
+        pais_origem,
         descricao,
       ]
     );

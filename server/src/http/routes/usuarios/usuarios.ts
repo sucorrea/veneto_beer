@@ -1,6 +1,6 @@
-import { OutUsuario } from "./../models/OutUsuario";
+import { OutUsuario } from "../../models/OutUsuario";
 import { Router, Request, Response } from "express";
-const db = require("../../../db");
+const db = require("../../../../db");
 
 const router = Router();
 
