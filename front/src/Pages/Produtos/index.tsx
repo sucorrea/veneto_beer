@@ -1,9 +1,13 @@
-import { DataGrid } from "@mui/x-data-grid/DataGrid";
-import { GridColDef } from "@mui/x-data-grid";
 import { useCallback } from "react";
-import { OutProduto } from "../../Api/ProdutosApiService/Models/OutProduto";
 import { useQuery } from "react-query";
+
+import { GridColDef } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid/DataGrid";
+
 import { consultarProdutos } from "../../Api/ProdutosApiService";
+import { OutProduto } from "../../Api/ProdutosApiService/Models/OutProduto";
+import AlterarProduto from "./AlterarProduto";
+import ExcluirProduto from "./ExcluirProduto";
 
 const columns: GridColDef[] = [
   { field: "id_produto", headerName: "Código", width: 90 },
@@ -43,6 +47,18 @@ const columns: GridColDef[] = [
     field: "descricao",
     headerName: "Descrição",
     width: 160,
+  },
+  {
+    field: "alterar",
+    headerName: "",
+    width: 160,
+    renderCell: () => <AlterarProduto />,
+  },
+  {
+    field: "excluir",
+    headerName: "",
+    width: 160,
+    renderCell: () => <ExcluirProduto />,
   },
 ];
 
