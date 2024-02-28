@@ -1,24 +1,31 @@
 import { useState } from "react";
 
 import { Edit } from "@mui/icons-material";
-import Modal from "@mui/material/Modal";
 
 import IconButtonTooltip from "../../../Components/IconButtonTooltip";
-const AlterarProduto = () => {
+import Modal from "../../../Components/Modal";
+import AlterarProdutoForm from "./AlterarProdutoForm";
+
+type AlterarProdutoProps = {
+  idProduto: number;
+};
+const AlterarProduto = ({ idProduto }: AlterarProdutoProps) => {
   const [openAlterarProduto, setOpenAlterarProduto] = useState(false);
 
   return (
     <>
       <IconButtonTooltip
-        textoTooltip="Incluir"
+        textoTooltip="Alterar"
         onClick={() => setOpenAlterarProduto(true)}
-        icon={<Edit color="info" />}
+        icon={<Edit color="primary" />}
       />
       <Modal
+        title="Alterar Produto"
         open={openAlterarProduto}
         onClose={() => setOpenAlterarProduto(false)}
+        maxWidth="md"
       >
-        <>ALTERAR</>
+        <AlterarProdutoForm />
       </Modal>
     </>
   );

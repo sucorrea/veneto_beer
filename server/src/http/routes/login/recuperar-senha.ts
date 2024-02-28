@@ -7,12 +7,12 @@ const nodemailer = require("nodemailer");
 const router = Router();
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.example.com", // Substitua pelo seu servidor SMTP
+  host: "smtp.example.com", 
   port: 587,
-  secure: false, // true para 465, false para outras portas
+  secure: false, 
   auth: {
-    user: "email@example.com", // seu e-mail
-    pass: "senha", // sua senha
+    user: "email@example.com", 
+    pass: "senha", 
   },
 });
 
@@ -29,14 +29,12 @@ router.post("/recuperar-senha", async (req: Request, res: Response) => {
       const usuario = usuarioResult.rows[0];
       const token = crypto.randomBytes(20).toString("hex");
 
-      // Aqui você deveria armazenar o token e sua validade no banco de dados
 
       const mailOptions = {
         from: "email@example.com",
         to: usuario.email,
         subject: "Recuperação de Senha",
         text: `Você solicitou a recuperação de senha. Use o seguinte token para redefinir sua senha: ${token}`,
-        // Idealmente, você incluiria um link para uma página de redefinição de senha
       };
 
       transporter.sendMail(mailOptions, (error, info) => {

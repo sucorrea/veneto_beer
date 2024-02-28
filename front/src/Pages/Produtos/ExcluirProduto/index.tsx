@@ -1,9 +1,12 @@
-import { Close } from "@mui/icons-material";
-
-import IconButtonTooltip from "../../../Components/IconButtonTooltip";
+import { useCallback } from "react";
 import { useMutation } from "react-query";
+
+import { Delete } from "@mui/icons-material";
+
 import { excluirProduto } from "../../../Api/ProdutosApiService";
+import IconButtonTooltip from "../../../Components/IconButtonTooltip";
 import { useProdutos } from "../useProdutos";
+
 type ExcluirProdutoProps = {
   idProduto: number;
 };
@@ -17,16 +20,14 @@ const ExcluirProduto = ({ idProduto }: ExcluirProdutoProps) => {
     },
   });
 
-  const handleClick = () => {
-    mutate();
-  };
+  const handleClick = useCallback(() => mutate(), [mutate]);
 
   return (
     <>
       <IconButtonTooltip
         textoTooltip="Excluir"
         onClick={handleClick}
-        icon={<Close color="warning" />}
+        icon={<Delete color="error" />}
       />
     </>
   );

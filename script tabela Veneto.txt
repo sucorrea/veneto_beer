@@ -22,9 +22,19 @@ CREATE TABLE produtos (
     tipo_cerveja VARCHAR(100),
     teor_alcoolico NUMERIC(5, 2),
     volume_ml INTEGER,
-    pais_origem VARCHAR(100),
     descricao TEXT
 );
+
+INSERT INTO produtos 
+(dt_criacao, dt_validade, nm_produto, vl_produto, tipo_cerveja, teor_alcoolico, volume_ml, pais_origem, descricao) 
+VALUES 
+('2023-01-01', '2024-01-01', 'Golden Ale Clássica', 15.99, 'Golden Ale', 5.0, 500, 'Uma cerveja leve, dourada e refrescante, perfeita para qualquer ocasião.'),
+('2023-02-01', '2024-02-01', 'IPA Tropical', 18.50, 'IPA', 6.5, 500,  'Amarga e aromática, com notas cítricas e tropicais, ideal para os amantes de uma boa IPA.'),
+('2023-03-01', '2024-03-01', 'Stout Café', 20.00, 'Stout', 6.0, 500, , 'Escura e intensa, com sabores ricos de café e chocolate, uma verdadeira Stout irlandesa.'),
+('2023-04-01', '2024-04-01', 'Weissbier Tradicional', 16.75, 'Weissbier', 5.5, 500,  'Suave e turva, com notas de banana e cravo, fiel ao estilo alemão.'),
+('2023-05-01', '2024-05-01', 'Saison Farmhouse', 19.90, 'Saison', 7.0, 500,  'Complexa e especiada, com um toque rústico, representa a essência das fazendas belgas.');
+
+
 CREATE TABLE movimentacao_estoque (
     id_movimentacao SERIAL PRIMARY KEY,
     id_produto INTEGER NOT NULL,
@@ -55,3 +65,34 @@ VALUES
 ('Carla Dias', 'carla.dias@example.com', 'senha12345', TRUE),
 ('Diego Martins', 'diego.martins@example.com', 'senha123456', FALSE),
 ('Eva Santos', 'eva.santos@example.com', 'senha1234567', FALSE);
+
+
+CREATE TABLE tipos_cerveja (
+    id_tipo SERIAL PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL UNIQUE,
+    descricao TEXT
+);
+
+INSERT INTO tipos_cerveja (nome, descricao) VALUES
+('IPA', 'India Pale Ale - um estilo de cerveja pálida e amarga, com forte aroma de lúpulo.'),
+('Stout', 'Um estilo escuro, variando de doce a amargo, conhecido por suas notas de café e chocolate.'),
+('Saison', 'Originalmente uma cerveja de fazenda belga, é leve, frutada e frequentemente com especiarias.'),
+('Porter', 'Um estilo de cerveja escura desenvolvido em Londres, caracterizado por sua suavidade e notas de chocolate.'),
+('Pale Ale', 'Um estilo de cerveja feito com lúpulos aromáticos, conhecido por seu equilíbrio e acessibilidade.'),
+('Sour', 'Cervejas com um perfil ácido distinto, variando amplamente em sabor e intensidade.'),
+('Lager', 'Um estilo de cerveja fermentada e condicionada em baixas temperaturas, conhecida por sua suavidade e clareza.'),
+('Witbier', 'Uma cerveja de trigo belga, frequentemente temperada com coentro e casca de laranja, conhecida por sua leveza e notas cítricas.'),
+('Pilsner', 'Uma pale lager clara e dourada com um sabor de lúpulo distinto, originária da cidade de Pilsen na República Tcheca.'),
+('Barleywine', 'Um estilo de cerveja forte, com alto teor alcoólico e sabores ricos e maltados.');
+
+
+-- Primeiro, vamos adicionar a coluna id_tipo à tabela cervejas_artesanais
+ALTER TABLE cervejas_artesanais
+ADD COLUMN id_tipo_cerveja INTEGER;
+
+-- Em seguida, definimos a coluna id_tipo como uma chave estrangeira que referencia a coluna id_tipo da tabela tipos_cerveja
+ALTER TABLE cervejas_artesanais
+ADD CONSTRAINT fk_tipos_cerveja
+FOREIGN KEY (id_tipo_cerveja)
+REFERENCES tipos_cerveja (id_tipo)
+ON DELETE SET NULL;

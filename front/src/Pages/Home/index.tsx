@@ -1,8 +1,12 @@
+import Produtos from "../Produtos";
 
 const Home = () => {
   return (
-    <div>Pagina Inicial</div>
-  )
-}
+    <div>
+      Pagina Inicial
+      <Produtos />
+    </div>
+  );
+};
 
-export default Home
+export default Home;

@@ -8,6 +8,7 @@ import IncluirEstoque from "./routes/movimentacao-estoque/incluir-movimentacao_e
 import AlterarProduto from "./routes/produtos/alterar-produto";
 import ExcluirProduto from "./routes/produtos/excluir-produto";
 import IncluirProduto from "./routes/produtos/incluir-produto";
+import TiposCerveja from "./routes/produtos/tipos-cerveja";
 import Produtos from "./routes/produtos/produtos";
 import AlterarUsuario from "./routes/usuarios/alterar-usuarios";
 import ExcluirUsuario from "./routes/usuarios/exluir-usuarios";
@@ -27,6 +28,7 @@ app.use(AlterarUsuario);
 app.use(ExcluirUsuario);
 
 /*Produtos*/
+app.use(TiposCerveja);
 app.use(IncluirProduto);
 app.use(AlterarProduto);
 app.use(ExcluirProduto);
