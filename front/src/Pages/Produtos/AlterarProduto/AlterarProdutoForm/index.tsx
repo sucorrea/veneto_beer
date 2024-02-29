@@ -31,6 +31,7 @@ const AlterarProdutoForm = () => {
               <DatePicker
                 label="Data de Validade"
                 format="DD/MM/YYYY"
+                disablePast
                 slotProps={{
                   textField: {
                     variant: "filled",

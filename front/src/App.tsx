@@ -7,6 +7,7 @@ import createTheme from "@mui/material/styles/createTheme";
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import "dayjs/locale/pt-BR";
 
 import { router } from "./Routes";
 
@@ -32,10 +33,9 @@ const theme = createTheme({
 });
 const App = () => {
   const queryClient = new QueryClient();
-
   return (
     <ThemeProvider theme={theme}>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pt-BR">
         <QueryClientProvider client={queryClient}>
           <Suspense fallback={<div>Loading...</div>}>
             <RouterProvider router={router} />
